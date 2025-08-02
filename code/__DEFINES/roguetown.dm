@@ -146,6 +146,7 @@
     /datum/species/lupian,\
     /datum/species/moth,\
     /datum/species/anthromorph,\
+    /datum/species/anthromorphsmall,\
     /datum/species/tabaxi,\
     /datum/species/lizardfolk,\
     /datum/species/dracon,\
@@ -155,7 +156,6 @@
 	/datum/species/halforc,\
 
 #define RACES_WIDELY_REVILED \
-    /datum/species/anthromorphsmall,\
     /datum/species/kobold,\
     /datum/species/goblinp,\
 
