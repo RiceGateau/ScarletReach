@@ -554,6 +554,10 @@
 #define DARKBROWN_FUR "3b2e27"
 #define BLACK_FUR	 "271f1a"
 
+//DOLL PAINT COLOR
+#define DOLL_LEAD "ffffff"
+#define DOLL_SIENNA "a0522d"
+
 // Pixel shifting
 #define PIXEL_SHIFT_MAXIMUM 16
 #define PIXEL_SHIFT_PASSABLE_THRESHOLD 8
