@@ -336,29 +336,81 @@
 		to_chat(user, span_warning("I twisted [C]'s prosthetic [parse_zone(sublimb_grabbed)] off.[C.next_attack_msg.Join()]"))
 		limb_grabbed.drop_limb(TRUE)
 
+	if(limb_grabbed.body_zone == BODY_ZONE_HEAD && isdoll(C))
+		var/mob/living/carbon/human/target = C
+		if(limb_grabbed.status == armor_block == 1)
+			target.visible_message(span_danger("[target]'s head fails to be popped out of socket!"), \
+				span_danger("[user] Tries to twist my head out of it's socket but the armor keeps it in place!"))
+			to_chat(user, span_warning("[target]'s head stays in it's socket because of the armor!"))
+			return
+
+		target.visible_message(span_danger("[target]'s head is being forcefully popped out of socket!"), \
+			span_danger("My head is being forcefully popped out of socket!"))
+		to_chat(user, span_warning("I begin popping [target]'s head out of socket."))
+
+		if(do_after(user, 100, target = target))
+			target.visible_message(span_danger("[target]'s head has been popped out of socket!"), \
+				span_userdanger("My head has been popped out of socket!"))
+			to_chat(user, span_warning("I pop [target]'s head out of it's socket."))
+
+			limb_grabbed.drop_limb(FALSE)
+
+			if(QDELETED(limb_grabbed))
+				return
+
+			qdel(src)
+			user.put_in_active_hand(limb_grabbed)
+
+	if(limb_grabbed.body_zone == sublimb_grabbed && isdoll(C))
+		var/mob/living/carbon/human/target = C
+		if(limb_grabbed.status == armor_block == 1)
+			target.visible_message(span_danger("[target]'s [parse_zone(sublimb_grabbed)] fails to be twisted off!"), \
+				span_danger("[user] Tries to twist my [parse_zone(sublimb_grabbed)] out of it's socket but the armor keeps it in place!"))
+			to_chat(user, span_warning("[target]'s head stays in it's socket because of [target]'s armor!"))
+			return
+
+		target.visible_message(span_danger("[target]'s [parse_zone(sublimb_grabbed)] is being forcefully popped out of socket!"), \
+			span_danger("My [parse_zone(sublimb_grabbed)] is being forcefully popped out of socket!"))
+		to_chat(user, span_warning("I begin popping [target]'s [parse_zone(sublimb_grabbed)] out of socket."))
+
+		if(do_after(user, 6, target = target))
+			target.visible_message(span_danger("[target]'s [parse_zone(sublimb_grabbed)] has been popped out of socket!"), \
+				span_userdanger("My [parse_zone(sublimb_grabbed)] has been popped out of socket!"))
+			to_chat(user, span_warning("I pop [target]'s [parse_zone(sublimb_grabbed)] out of socket."))
+
+			limb_grabbed.drop_limb(FALSE)
+
+			if(QDELETED(limb_grabbed))
+				return
+
+			qdel(src)
+			user.put_in_active_hand(limb_grabbed)
+
 /obj/item/grabbing/proc/headbutt(mob/living/carbon/human/H)
 	var/mob/living/carbon/C = grabbed
 	var/obj/item/bodypart/Chead = C.get_bodypart(BODY_ZONE_HEAD)
 	var/obj/item/bodypart/Hhead = H.get_bodypart(BODY_ZONE_HEAD)
-	var/armor_block = C.run_armor_check(Chead, "blunt")
-	var/armor_block_user = H.run_armor_check(Hhead, "blunt")
-	var/damage = H.get_punch_dmg()
-	C.next_attack_msg.Cut()
-	playsound(C.loc, "genblunt", 100, FALSE, -1)
-	C.apply_damage(damage*1.5, , Chead, armor_block)
-	Chead.bodypart_attacked_by(BCLASS_SMASH, damage*1.5, H, crit_message=TRUE)
-	H.apply_damage(damage, BRUTE, Hhead, armor_block_user)
-	Hhead.bodypart_attacked_by(BCLASS_SMASH, damage/1.2, H, crit_message=TRUE)
-	C.stop_pulling(TRUE)
-	C.Immobilize(10)
-	C.OffBalance(10)
-	H.Immobilize(5)
-
-	C.visible_message("<span class='danger'>[H] headbutts [C]'s [parse_zone(sublimb_grabbed)]![C.next_attack_msg.Join()]</span>", \
-					"<span class='userdanger'>[H] headbutts my [parse_zone(sublimb_grabbed)]![C.next_attack_msg.Join()]</span>", "<span class='hear'>I hear a sickening sound of pugilism!</span>", COMBAT_MESSAGE_RANGE, H)
-	to_chat(H, "<span class='warning'>I headbutt [C]'s [parse_zone(sublimb_grabbed)].[C.next_attack_msg.Join()]</span>")
-	C.next_attack_msg.Cut()
-	log_combat(H, C, "headbutted ")
+	if(!isdoll(C))
+		return FALSE
+		var/armor_block = C.run_armor_check(Chead, "blunt")
+		var/armor_block_user = H.run_armor_check(Hhead, "blunt")
+		var/damage = H.get_punch_dmg()
+		C.next_attack_msg.Cut()
+		playsound(C.loc, "genblunt", 100, FALSE, -1)
+		C.apply_damage(damage*1.5, , Chead, armor_block)
+		Chead.bodypart_attacked_by(BCLASS_SMASH, damage*1.5, H, crit_message=TRUE)
+		H.apply_damage(damage, BRUTE, Hhead, armor_block_user)
+		Hhead.bodypart_attacked_by(BCLASS_SMASH, damage/1.2, H, crit_message=TRUE)
+		C.stop_pulling(TRUE)
+		C.Immobilize(10)
+		C.OffBalance(10)
+		H.Immobilize(5)
+	
+		C.visible_message("<span class='danger'>[H] headbutts [C]'s [parse_zone(sublimb_grabbed)]![C.next_attack_msg.Join()]</span>", \
+						"<span class='userdanger'>[H] headbutts my [parse_zone(sublimb_grabbed)]![C.next_attack_msg.Join()]</span>", "<span class='hear'>I hear a sickening sound of pugilism!</span>", COMBAT_MESSAGE_RANGE, H)
+		to_chat(H, "<span class='warning'>I headbutt [C]'s [parse_zone(sublimb_grabbed)].[C.next_attack_msg.Join()]</span>")
+		C.next_attack_msg.Cut()
+		log_combat(H, C, "headbutted ")
 
 /obj/item/grabbing/proc/twistitemlimb(mob/living/user) //implies limb_grabbed and sublimb are things
 	var/mob/living/M = grabbed

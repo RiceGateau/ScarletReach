@@ -14,7 +14,7 @@
 	unknown what provided them with such a gift. A master wanting more engaging conversation? A lord wanting a more \
 	efficient clerk? Regardless, who knows what them eyes made of glass truly reflect...<br> \
 	(Insomnia, No hunger, no blood.) \
-	(+2 Intelligence, -2 Strength, -2 Constitution, -2 Endurance, -2 Speed)"
+	(+2 Intelligence, +2 Perception, -2 Strength, -2 Constitution, -2 Endurance, -2 Speed)"
 
 	construct = 1
 	skin_tone_wording = "Paint"
@@ -26,7 +26,8 @@
 	skinned_type = /obj/item/ingot/steel
 	disliked_food = NONE
 	liked_food = NONE
-	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_BLOODLOSS_IMMUNE, TRAIT_NOBREATH, TRAIT_NOSLEEP, TRAIT_CRITICAL_WEAKNESS, TRAIT_BEAUTIFUL)
+	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_BLOODLOSS_IMMUNE, TRAIT_NOBREATH, TRAIT_NOSLEEP, TRAIT_CRITICAL_WEAKNESS, 
+	TRAIT_BEAUTIFUL, TRAIT_EASYDISMEMBER, TRAIT_LIMBATTACHMENT)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
 	limbs_icon_m = 'icons/roguetown/mob/bodies/m/mcom.dmi'
 	limbs_icon_f = 'icons/roguetown/mob/bodies/f/fcom.dmi'
@@ -46,7 +47,7 @@
 		OFFSET_NECK_F = list(0,-1), OFFSET_MOUTH_F = list(0,-1), OFFSET_PANTS_F = list(0,0), \
 		OFFSET_SHIRT_F = list(0,0), OFFSET_ARMOR_F = list(0,0), OFFSET_UNDIES_F = list(0,-1), \
 		)
-	race_bonus = list(STAT_INTELLIGENCE = 2, STAT_ENDURANCE = -2, STAT_STRENGTH = -2, STAT_CONSTITUTION = -2, STAT_SPEED = -2)
+	race_bonus = list(STAT_INTELLIGENCE = 2, STAT_PERCEPTION = 2, STAT_ENDURANCE = -2, STAT_STRENGTH = -2, STAT_CONSTITUTION = -2, STAT_SPEED = -2)
 	enflamed_icon = "widefire"
 	organs = list(
 		ORGAN_SLOT_BRAIN = /obj/item/organ/brain/golem,

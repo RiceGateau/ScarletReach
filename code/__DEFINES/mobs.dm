@@ -554,7 +554,6 @@
 #define DARKBROWN_FUR "3b2e27"
 #define BLACK_FUR	 "271f1a"
 
-=======
 //GOLEM MATERIALS
 #define GOLEM_BRASS "dfbd6c"
 #define GOLEM_IRON "525352"
