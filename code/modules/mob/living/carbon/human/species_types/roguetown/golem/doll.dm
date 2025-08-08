@@ -14,7 +14,7 @@
 	unknown what provided them with such a gift. A master wanting more engaging conversation? A lord wanting a more \
 	efficient clerk? Regardless, who knows what them eyes made of glass truly reflect...<br> \
 	(Insomnia, No hunger, no blood.) \
-	(+2 Intelligence, +2 Perception, -2 Strength, -2 Constitution, -2 Endurance, -2 Speed)"
+	(+2 Intelligence, +2 Perception, -2 Strength, -2 Constitution, -2 Endurance)"
 
 	construct = 1
 	skin_tone_wording = "Paint"
