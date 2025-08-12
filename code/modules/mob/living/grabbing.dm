@@ -401,6 +401,14 @@
 			target.visible_message(span_danger("[target]'s head has been twisted off!"), \
 				span_userdanger("My head was twisted off!"))
 			to_chat(user, span_warning("I twist [target]'s head off."))
+
+			limb_grabbed.drop_limb(FALSE)
+
+			if(QDELETED(limb_grabbed))
+				return
+
+			qdel(src)
+			user.put_in_active_hand(limb_grabbed)
       
 /obj/item/grabbing/proc/headbutt(mob/living/carbon/human/H)
 	var/mob/living/carbon/C = grabbed
